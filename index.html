@@ -14,6 +14,14 @@
         * {
             font-family: "HarmonyOS Sans TC";
         }
+        
+        .omit {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
     </style>
     <title>搞機知識站</title>
 </head>
@@ -47,8 +55,8 @@
         </div>
     </nav>
     <!-- navbar ends here -->
-    <div class="container">
-        <h1>還沒發佈東西你想看什麼</h1>
+    <div id='container' class="container">
+        <!-- <h1>還沒發佈東西你想看什麼</h1> -->
     </div>
 
 </body>

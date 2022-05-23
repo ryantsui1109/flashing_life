@@ -1,21 +1,48 @@
 $(document).ready(function() {
-    clicks = 0
-    articles = []
+    var clicks = 0
+    var articles = []
+    card_template = `
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      </div>
+    </div>`
 
-    var url = "https://raw.githubusercontent.com/ryantsui1109/flashing_life-arti/master/data.json";
+    function getData(url) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                articles = JSON.parse(xhr.responseText)
+            }
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", url);
-
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4) {
-
-            article = xhr.responseText
-            console.log(article)
         }
+        xhr.send();
     };
 
-    xhr.send();
+    function renderList(articleList) {
+
+        for (x of articleList) {
+            console.log(x.title)
+            console.log(x.content)
+            $('#container').prepend(`
+            </br>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">${x.title}</h5>
+        <p class="card-text omit">${x.content}</p>
+      </div>
+    </div>
+    
+    `);
+        }
+        console.log('read list finished')
+
+
+
+    }
+
     $('#dropdown-menu-01-01').on('click', function() {
         clicks++
 
@@ -32,5 +59,12 @@ $(document).ready(function() {
                 }
             }
         }
-    })
+    });
+    getData("https://raw.githubusercontent.com/ryantsui1109/flashing_life-arti/master/data.json");
+    setTimeout(() => {
+
+        renderList(articles);
+    }, 100);
+
+
 })
