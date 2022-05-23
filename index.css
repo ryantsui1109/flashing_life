@@ -1,0 +1,19 @@
+* {
+    font-family: "HarmonyOS Sans TC";
+}
+
+.omit {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.post {
+    transition: 0.2s;
+}
+
+.post:hover {
+    background-color: #e0e0e0;
+}

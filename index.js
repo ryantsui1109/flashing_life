@@ -24,24 +24,23 @@ $(document).ready(function() {
     function renderList(articleList) {
 
         for (x of articleList) {
-            console.log(x.title)
-            console.log(x.content)
             $('#container').prepend(`
             </br>
-    <div class="card">
+    <div id="${x.id}" class="card post" onclick="localStorage.setItem('targetid', $(this).attr('id'));window.location.href += "/article/index.html";>
       <div class="card-body">
-        <h5 class="card-title">${x.title}</h5>
-        <p class="card-text omit">${x.content}</p>
+        <h4 class="card-title">${x.title}</h4>
+        <h5 class="card-text omit">${x.content}</h5>
+        <h6 class="text-secondary">#${x.id}<h6>
       </div>
     </div>
     
     `);
         }
-        console.log('read list finished')
-
-
-
     }
+    // $('.post').click(function(e) {
+    //     console.log($(this).attr(id))
+    //         // localStorage.setItem('targetid', $(this).attr(id))
+    // });
 
     $('#dropdown-menu-01-01').on('click', function() {
         clicks++
