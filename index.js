@@ -60,5 +60,5 @@ $(document).ready(function() {
     });
     setTimeout(() => {
         renderList(articles);
-    }, 100);
+    }, 300);
 });
