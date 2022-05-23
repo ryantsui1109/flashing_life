@@ -26,7 +26,7 @@ $(document).ready(function() {
         for (x of articleList) {
             $('#container').prepend(`
             </br>
-    <div id="${x.id}" class="card post" onclick="localStorage.setItem('targetid', $(this).attr('id'));window.location.href += "/article/index.html";>
+    <div id="${x.id}" class="card post" onclick="localStorage.setItem('targetid', $(this).attr('id'));window.open('./article/');">
       <div class="card-body">
         <h4 class="card-title">${x.title}</h4>
         <h5 class="card-text omit">${x.content}</h5>
