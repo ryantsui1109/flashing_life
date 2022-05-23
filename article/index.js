@@ -23,7 +23,7 @@ $(document).ready(function() {
         findArticle(articles)
         $('#article-title').text(article.title);
         $('#article-content').text(article.content);
-        $('#article-date').text(`發佈於 ${article.date}`);
+        $('#article-date').text(`由 ${article.author} 於 ${article.date} 發佈`);
     }, 100);
 
 });
