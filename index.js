@@ -9,7 +9,7 @@ $(document).ready(function() {
       </div>
     </div>`
 
-    url = "https://raw.githubusercontent.com/ryantsui1109/flashing_life-arti/master/data.json"
+    url = "https://raw.githubusercontent.com/ryantsui1109/flashing_life-res/master/data.json"
     var xhr = new XMLHttpRequest();
     xhr.open("GET", url);
     xhr.onreadystatechange = function() {

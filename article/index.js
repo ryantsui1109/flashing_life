@@ -2,7 +2,7 @@ $(document).ready(function() {
     article_id = localStorage.getItem('targetid')
     articles = []
     article = []
-    url = "https://raw.githubusercontent.com/ryantsui1109/flashing_life-arti/master/data.json"
+    url = "https://raw.githubusercontent.com/ryantsui1109/flashing_life-res/master/data.json"
     var xhr = new XMLHttpRequest();
     xhr.open("GET", url);
     xhr.onreadystatechange = function() {
