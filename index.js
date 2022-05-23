@@ -9,17 +9,16 @@ $(document).ready(function() {
       </div>
     </div>`
 
-    function getData(url) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", url);
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4) {
-                articles = JSON.parse(xhr.responseText)
-            }
-
+    url = "https://raw.githubusercontent.com/ryantsui1109/flashing_life-arti/master/data.json"
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            articles = JSON.parse(xhr.responseText)
         }
-        xhr.send();
-    };
+
+    }
+    xhr.send();
 
     function renderList(articleList) {
 
@@ -28,9 +27,9 @@ $(document).ready(function() {
             </br>
     <div id="${x.id}" class="card post" onclick="localStorage.setItem('targetid', $(this).attr('id'));window.open('./article/');">
       <div class="card-body">
-        <h4 class="card-title">${x.title}</h4>
-        <h5 class="card-text omit">${x.content}</h5>
-        <h6 class="text-secondary">#${x.id}<h6>
+        <h4 style="font-weight:500;" class="card-title">${x.title}</h4>
+        <h5 style="font-weight:300;" class="card-text omit">${x.content}</h5>
+        <h6 style="font-weight:300;" class="text-secondary">#${x.id}<h6>
       </div>
     </div>
     
@@ -59,11 +58,7 @@ $(document).ready(function() {
             }
         }
     });
-    getData("https://raw.githubusercontent.com/ryantsui1109/flashing_life-arti/master/data.json");
     setTimeout(() => {
-
         renderList(articles);
     }, 100);
-
-
-})
+});
