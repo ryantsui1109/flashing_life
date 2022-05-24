@@ -1,7 +1,5 @@
 $(document).ready(function() {
-    $(document).on('click', '.search-dropdown-item', function() {
-        determinePlaceholder(this.getAttribute('id'))
-    });
+
     var clicks = 0
     var articles = []
     var searchCondi = [
@@ -33,9 +31,9 @@ $(document).ready(function() {
 
     function determinePlaceholder(elementID) {
         if (elementID == "searchByDate") {
-            $('#search-input').attr('placeholder', 'YYYY-MM-DD');
+            $('#search-input').attr('type', 'date');
         } else {
-            $('#search-input').attr('placeholder', '搜尋');
+            $('#search-input').attr('type', 'text');
         }
     }
 
@@ -121,6 +119,10 @@ $(document).ready(function() {
         renderPost(temp)
             // console.log(temp)
     }
+
+    $(document).on('click', '.search-dropdown-item', function() {
+        determinePlaceholder(this.getAttribute('id'))
+    });
 
     $('#searchByDate').on('click', function() {
         console.log($(this))
