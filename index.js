@@ -23,7 +23,8 @@ $(document).ready(function() {
     function renderList(articleList) {
 
         for (x of articleList) {
-            $('#container').prepend(`
+            if (x.hidden == "false") {
+                $('#container').prepend(`
             </br>
     <div id="${x.id}" class="card post" onclick="localStorage.setItem('targetid', $(this).attr('id'));window.open('./article/');">
       <div class="card-body">
@@ -35,12 +36,11 @@ $(document).ready(function() {
     </div>
     
     `);
+            }
+
+
         }
     }
-    // $('.post').click(function(e) {
-    //     console.log($(this).attr(id))
-    //         // localStorage.setItem('targetid', $(this).attr(id))
-    // });
 
     $('#dropdown-menu-01-01').on('click', function() {
         clicks++
