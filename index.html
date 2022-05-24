@@ -11,6 +11,7 @@
     <script src="./index.js"></script>
     <link rel="stylesheet" href="./resources/HarmonyOS_Sans_TC/stylesheet.css">
     <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>搞機知識站</title>
 </head>
 
@@ -36,17 +37,28 @@
                     </div>
                 </li>
             </ul>
-            <!-- <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form> -->
+            <form class="form-inline my-2 my-lg-0">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="搜尋" aria-label="Text input with segmented dropdown button">
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary">Action</button>
+                        <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div id="search-dropdown" class="dropdown-menu">
+                            <a class="dropdown-item disabled" href="#">搜尋條件</a>
+                            <div role="separator" class="dropdown-divider"></div>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </nav>
     <!-- navbar ends here -->
-    <div id='container' class="container">
+    <div id='container' class="container ">
         <!-- <h1>還沒發佈東西你想看什麼</h1> -->
     </div>
-    <!-- TODO:searchings,hidden article,hashtags,image support,sort by -->
+    <!-- TODO:searchings,hashtags,image support,sort by -->
 </body>
 
 </html>
