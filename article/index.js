@@ -1,6 +1,7 @@
 $(document).ready(function() {
     var urlParams = new window.URLSearchParams(window.location.search);
     article_id = urlParams.get('id')
+    console.log(article_id)
     articles = []
     article = []
 
