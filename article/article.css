@@ -1,0 +1,7 @@
+.back-button {
+    transition: 0.2s;
+}
+
+.back-button:hover {
+    background-color: #e0e0e0;
+}

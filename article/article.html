@@ -15,13 +15,14 @@
         }
     </style>
     <link rel="stylesheet" href="../resources/shared.css">
+    <link rel="stylesheet" href="../article/article.css">
     <title>搞機知識站</title>
 </head>
 
-<body>
+<body class="bg-light">
 
     <!-- navbar starts here -->
-    <nav class="navbar navbar-expand-sm navbar-dark bg-info">
+    <nav class="shadow-sm navbar navbar-expand-sm navbar-dark bg-info">
         <a class="navbar-brand" href="#">搞機知識站</a>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -50,7 +51,7 @@
     <!-- navbar ends here -->
     <br>
     <div class="container">
-        <h2 class="bi bi-arrow-left" onclick="window.close()"></h2>
+        <button class="back-button btn" onclick="window.close()"><h2 class="bi bi-arrow-left mb-0"></h2></button>
         <h2 id="article-title">標題加載中...</h2>
         <h6 id="article-date" class="text-secondary">由 ${author} 於 ${date} 發佈</h6>
         <hr>
