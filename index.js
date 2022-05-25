@@ -39,7 +39,7 @@ $(document).ready(function() {
                 console.log(x.tags)
                 $('#container').prepend(`
                     </br>
-                    <div id="${x.id}" class="shadow-sm border-0 card post" onclick="window.open('./article'+'?articleID=${x.id}');">
+                    <div id="${x.id}" class="shadow-sm border-0 card post" onclick="window.open('./article/article.html?articleID=${x.id}')">
                         <div class="card-body">
                                 <h4 style="font-weight:500;" class="card-title mb-0">${x.title}</h4>
                                 <div id="${x.id}-tags">
@@ -125,6 +125,13 @@ $(document).ready(function() {
 
     $(document).on('click', '.search-dropdown-item', function() {
         determinePlaceholder(this.getAttribute('id'))
+    });
+
+    $(document).on('click', '.post', function() {
+        console.log(this.getAttribute('id'))
+        articleID = this.getAttribute('id')
+        window.open(`./article?articleID=${articleID}`)
+
     });
 
     $('#searchByDate').on('click', function() {
