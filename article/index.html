@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
     <script src="./index.js"></script>
@@ -15,8 +14,7 @@
             font-family: "HarmonyOS Sans TC";
         }
     </style>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+    <link rel="stylesheet" href="../resources/shared.css">
     <title>搞機知識站</title>
 </head>
 
@@ -33,9 +31,9 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#">回首頁<span class="sr-only">(current)</span></a>
                 </li>
-                <!-- <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" href="https://fb.me/flashing.life">FB粉專</a>
-                </li> -->
+                </li>
                 <!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">文章分類</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
@@ -52,7 +50,7 @@
     <!-- navbar ends here -->
     <br>
     <div class="container">
-        <h2 style="font-family: 'Material icons';" class=" material-symbols-outlined" onclick="window.close()">arrow_back</h2>
+        <h2 class="bi bi-arrow-left" onclick="window.close()"></h2>
         <h2 id="article-title">標題加載中...</h2>
         <h6 id="article-date" class="text-secondary">由 ${author} 於 ${date} 發佈</h6>
         <hr>

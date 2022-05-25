@@ -43,7 +43,7 @@ $(document).ready(function() {
             if (!x.hidden) {
                 $('#container').prepend(`
                     </br>
-                    <div id="${x.id}" class="card post" onclick="localStorage.setItem('targetid', $(this).attr('id'));window.open('./article/');">
+                    <div id="${x.id}" class="shadow-sm border-0 card post" onclick="localStorage.setItem('targetid', $(this).attr('id'));window.open('./article/');">
                         <div class="card-body">
                             <h4 style="font-weight:500;" class="card-title">${x.title}</h4>
                             <h6 class="text-secondary">由 ${x.author} 於 ${x.date} 發佈</h6>

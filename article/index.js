@@ -21,6 +21,7 @@ $(document).ready(function() {
     }
     setTimeout(() => {
         findArticle(articles)
+        $('title').text(article.title + ' | 搞機知識站');
         $('#article-title').text(article.title);
         $('#article-content').text(article.content);
         $('#article-date').text(`由 ${article.author} 於 ${article.date} 發佈`);
