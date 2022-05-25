@@ -41,18 +41,26 @@ $(document).ready(function() {
         $('#container').empty();
         for (x of articleList) {
             if (!x.hidden) {
+                console.log(x.tags)
                 $('#container').prepend(`
                     </br>
                     <div id="${x.id}" class="shadow-sm border-0 card post" onclick="localStorage.setItem('targetid', $(this).attr('id'));window.open('./article/');">
                         <div class="card-body">
-                            <h4 style="font-weight:500;" class="card-title">${x.title}</h4>
-                            <h6 class="text-secondary">由 ${x.author} 於 ${x.date} 發佈</h6>
-                            <h5 style="font-weight:300;" class="card-text omit">${x.content}</h5>
-                            <h6 style="font-weight:300;" class="text-secondary">#${x.id}<h6>
+                                <h4 style="font-weight:500;" class="card-title mb-0">${x.title}</h4>
+                                <div id="${x.id}-tags" class="tags">
+                                    
+                                </div>
+                                <h6 class="text-secondary">由 ${x.author} 於 ${x.date} 發佈</h6>
+                                <h5 style="font-weight:300;" class="card-text omit">${x.content}</h5>
+                                <h6 style="font-weight:300;" class="text-secondary">#${x.id}<h6>
                         </div>
                     </div>
                 `);
             }
+            for (const y of x.tags) {
+                $(`#${x.id}-tags`).append(`<span class="badge badge-info">${y}</span>`);
+            }
+
         }
     }
 
