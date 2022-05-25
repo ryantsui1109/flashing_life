@@ -11,17 +11,11 @@ $(document).ready(function() {
         ['searchByAuthor', '依照作者']
     ]
     var searchBy = "searchAll"
-    card_template = `
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      </div>
-    </div>`
 
-    url = "https://raw.githubusercontent.com/ryantsui1109/flashing_life-res/master/data.json"
+    url = "https://raw.githubusercontent.com/ryantsui1109/flashing_life-res/master/data.json?_="
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", url);
+    xhr.open("GET", url + new Date().getTime());
+    // xhr.setRequestHeader('Cache-Control', 'no-cache');
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
             articles = JSON.parse(xhr.responseText)
@@ -39,6 +33,7 @@ $(document).ready(function() {
 
     function renderPost(articleList) {
         $('#container').empty();
+        console.log(articleList)
         for (x of articleList) {
             if (!x.hidden) {
                 console.log(x.tags)
@@ -47,7 +42,7 @@ $(document).ready(function() {
                     <div id="${x.id}" class="shadow-sm border-0 card post" onclick="localStorage.setItem('targetid', $(this).attr('id'));window.open('./article/');">
                         <div class="card-body">
                                 <h4 style="font-weight:500;" class="card-title mb-0">${x.title}</h4>
-                                <div id="${x.id}-tags" class="tags">
+                                <div id="${x.id}-tags">
                                     
                                 </div>
                                 <h6 class="text-secondary">由 ${x.author} 於 ${x.date} 發佈</h6>
@@ -58,7 +53,7 @@ $(document).ready(function() {
                 `);
             }
             for (const y of x.tags) {
-                $(`#${x.id}-tags`).append(`<span class="badge badge-info">${y}</span>`);
+                $(`#${x.id}-tags`).append(`<span class="badge badge-info mr-1">${y}</span>`);
             }
 
         }
