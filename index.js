@@ -39,7 +39,7 @@ $(document).ready(function() {
                 console.log(x.tags)
                 $('#container').prepend(`
                     </br>
-                    <div id="${x.id}" class="shadow-sm border-0 card post" onclick="localStorage.setItem('targetid', $(this).attr('id'));window.open('./article/');">
+                    <div id="${x.id}" class="shadow-sm border-0 card post" onclick="window.open('./article'+'?articleID=${x.id}');">
                         <div class="card-body">
                                 <h4 style="font-weight:500;" class="card-title mb-0">${x.title}</h4>
                                 <div id="${x.id}-tags">

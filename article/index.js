@@ -1,7 +1,9 @@
 $(document).ready(function() {
-    article_id = localStorage.getItem('targetid')
+    var urlParams = new window.URLSearchParams(window.location.search);
+    article_id = urlParams.get('id')
     articles = []
     article = []
+
     url = "https://raw.githubusercontent.com/ryantsui1109/flashing_life-res/master/data.json"
     var xhr = new XMLHttpRequest();
     xhr.open("GET", url);
@@ -26,5 +28,4 @@ $(document).ready(function() {
         $('#article-content').text(article.content);
         $('#article-date').text(`由 ${article.author} 於 ${article.date} 發佈`);
     }, 100);
-
 });
