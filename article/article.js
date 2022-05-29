@@ -28,7 +28,7 @@ $(document).ready(function() {
         $('#article-title').text(article.title);
         $('#article-content').empty();
         for (var x of article.content) {
-            $('#article-content').append(x);
+            $('#article-content').append(`<h4 style="font-weight:300;">${x}</h4>`);
             $('#article-content').append('<br>');
         }
         $('#article-date').text(`由 ${article.author} 於 ${article.date} 發佈`);
