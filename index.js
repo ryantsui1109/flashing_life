@@ -1,14 +1,14 @@
 $(document).ready(function() {
 
-    var clicks = 0
     var articles = []
-    var searchCondi = [
+    var searchCondition = [
         ['searchAll', '全域搜尋'],
         ['searchByID', '依照ID'],
         ['searchByTitle', '依照標題'],
         ['searchByContent', '依照內容'],
         ['searchByDate', '依照日期'],
-        ['searchByAuthor', '依照作者']
+        ['searchByAuthor', '依照作者'],
+        ['searchByTag', '依照標籤']
     ]
     var searchBy = "searchAll"
 
@@ -33,10 +33,8 @@ $(document).ready(function() {
 
     function renderPost(articleList) {
         $('#container').empty();
-        console.log(articleList)
         for (x of articleList) {
             if (!x.hidden) {
-                console.log(x.tags)
                 $('#container').prepend(`
                     </br>
                     <div id="${x.id}" class="shadow-sm border-0 card post" onclick="window.open('./article/article.html?articleID=${x.id}')">
@@ -127,18 +125,11 @@ $(document).ready(function() {
         determinePlaceholder(this.getAttribute('id'))
     });
 
-    $(document).on('click', '.post', function() {
-        console.log(this.getAttribute('id'))
-        articleID = this.getAttribute('id')
-        window.open(`./article?articleID=${articleID}`)
-
+    $('#search-button').on('click', function() {
+        findPost($('#search-input').val(), articles)
     });
 
-    $('#searchByDate').on('click', function() {
-        console.log($(this))
-    });
-
-    renderSearch(searchCondi);
+    renderSearch(searchCondition);
 
     setTimeout(() => {
         renderPost(articles);

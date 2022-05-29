@@ -26,7 +26,11 @@ $(document).ready(function() {
         findArticle(articles)
         $('title').text(article.title + ' | 搞機知識站');
         $('#article-title').text(article.title);
-        $('#article-content').text(article.content);
+        $('#article-content').empty();
+        for (var x of article.content) {
+            $('#article-content').append(x);
+            $('#article-content').append('<br>');
+        }
         $('#article-date').text(`由 ${article.author} 於 ${article.date} 發佈`);
     }, 100);
 });
