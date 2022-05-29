@@ -28,8 +28,11 @@ $(document).ready(function() {
         $('#article-title').text(article.title);
         $('#article-content').empty();
         for (var x of article.content) {
-            $('#article-content').append(`<h4 style="font-weight:300;">${x}</h4>`);
-            $('#article-content').append('<br>');
+            if (x == '') {
+                $('#article-content').append('<br>');
+            } else {
+                $('#article-content').append(`<h4 style="font-weight:300;">${x}</h4>`);
+            }
         }
         $('#article-date').text(`由 ${article.author} 於 ${article.date} 發佈`);
     }, 100);
