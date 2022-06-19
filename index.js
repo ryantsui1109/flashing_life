@@ -35,13 +35,13 @@ $(document).ready(function() {
         $('#container').empty();
         for (x of articleList) {
             if (!x.hidden) {
+                console.log(x.summary)
                 $('#container').prepend(`
                     </br>
                     <div id="${x.id}" class="shadow-sm border-0 card post" onclick="window.open('./article/article.html?articleID=${x.id}')">
                         <div class="card-body">
                                 <h4 style="font-weight:500;" class="card-title mb-0">${x.title}</h4>
                                 <div id="${x.id}-tags">
-                                    
                                 </div>
                                 <h6 class="text-secondary">由 ${x.author} 於 ${x.date} 發佈</h6>
                                 <h5 style="font-weight:300;" class="card-text omit">${x.content}</h5>
