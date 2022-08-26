@@ -1,48 +1,48 @@
-$(document).ready(function() {
+$(document).ready(function () {
+  var articles = [];
+  var searchCondition = [
+    ["searchAll", "全域搜尋"],
+    ["searchByID", "依照ID"],
+    ["searchByTitle", "依照標題"],
+    ["searchByContent", "依照內容"],
+    ["searchByDate", "依照日期"],
+    ["searchByAuthor", "依照作者"],
+    ["searchByTag", "依照標籤"],
+  ];
+  var searchBy = "searchAll";
 
-    var articles = []
-    var searchCondition = [
-        ['searchAll', '全域搜尋'],
-        ['searchByID', '依照ID'],
-        ['searchByTitle', '依照標題'],
-        ['searchByContent', '依照內容'],
-        ['searchByDate', '依照日期'],
-        ['searchByAuthor', '依照作者'],
-        ['searchByTag', '依照標籤']
-    ]
-    var searchBy = "searchAll"
-
-    url = "https://raw.githubusercontent.com/ryantsui1109/flashing_life-res/master/data.json?_="
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", url + new Date().getTime());
-    // xhr.setRequestHeader('Cache-Control', 'no-cache');
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4) {
-            articles = JSON.parse(xhr.responseText)
-        }
+  url =
+    "https://raw.githubusercontent.com/ryantsui1109/flashing_life-res/master/data.json?_=";
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", url + new Date().getTime(), false);
+  // xhr.setRequestHeader('Cache-Control', 'no-cache');
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      articles = JSON.parse(xhr.responseText);
     }
-    xhr.send();
+  };
+  xhr.send();
 
-    function determinePlaceholder(elementID) {
-        if (elementID == "searchByDate") {
-            $('#search-input').attr('type', 'date');
-        } else {
-            $('#search-input').attr('type', 'text');
-        }
+  function determinePlaceholder(elementID) {
+    if (elementID == "searchByDate") {
+      $("#search-input").attr("type", "date");
+    } else {
+      $("#search-input").attr("type", "text");
     }
+  }
 
-    function renderPost(articleList) {
-        $('#container').empty();
-        for (x of articleList) {
-            if (!x.hidden) {
-                console.log(x.summary)
-                let showContent = ""
-                for (y of x.summary) {
-                    showContent += x.content[y]
-                    showContent += " "
-                }
-                console.log(showContent)
-                $('#container').prepend(`
+  function renderPost(articleList) {
+    $("#container").empty();
+    for (x of articleList) {
+      if (!x.hidden) {
+        console.log(x.summary);
+        let showContent = "";
+        for (y of x.summary) {
+          showContent += x.content[y];
+          showContent += " ";
+        }
+        console.log(showContent);
+        $("#container").prepend(`
                     </br>
                     <div id="${x.id}" class="shadow-sm border-0 card post" onclick="window.open('./article/article.html?articleID=${x.id}')">
                         <div class="card-body">
@@ -55,89 +55,94 @@ $(document).ready(function() {
                         </div>
                     </div>
                 `);
-            }
-            for (const y of x.tags) {
-                $(`#${x.id}-tags`).append(`<span class="badge badge-info mr-1">${y}</span>`);
-            }
-
-        }
+      }
+      for (const y of x.tags) {
+        $(`#${x.id}-tags`).append(
+          `<span class="badge badge-info mr-1">${y}</span>`
+        );
+      }
     }
+  }
 
-    function renderSearch(dropdownList) {
-        for (x of dropdownList) {
-            $('#search-dropdown').append(`
+  function renderSearch(dropdownList) {
+    for (x of dropdownList) {
+      $("#search-dropdown").append(`
                 <p id="${x[0]}" class="search-dropdown-item dropdown-item" onclick="searchBy=$(this).attr('id');">${x[1]}</p>
             `);
+    }
+  }
+
+  function findPost(keyWord, articleList) {
+    temp = [];
+    reg = new RegExp(keyWord, "i");
+
+    if (searchBy == "searchByID") {
+      articleList.forEach(function (d) {
+        if (d.id == keyWord) {
+          temp.push(d);
         }
+      });
     }
 
-    function findPost(keyWord, articleList) {
-        temp = []
-        reg = new RegExp(keyWord, 'i')
-
-        if (searchBy == 'searchByID') {
-            articleList.forEach(function(d) {
-                if (d.id == keyWord) {
-                    temp.push(d)
-                }
-
-            });
+    if (searchBy == "searchByTitle") {
+      articleList.forEach(function (d) {
+        if (reg.test(d.title)) {
+          temp.push(d);
         }
-
-        if (searchBy == 'searchByTitle') {
-            articleList.forEach(function(d) {
-                if (reg.test(d.title)) {
-                    temp.push(d)
-                }
-            });
-        }
-
-        if (searchBy == 'searchByContent') {
-            articleList.forEach(function(d) {
-                if (reg.test(d.content)) {
-                    temp.push(d)
-                }
-            });
-        }
-
-        if (searchBy == 'searchByDate') {
-            articleList.forEach(function(d) {
-                if (d.date == keyWord) {
-                    temp.push(d)
-                }
-            });
-        }
-        if (searchBy == 'searchByAuthor') {
-            articleList.forEach(function(d) {
-                if (d.author == keyWord) {
-                    temp.push(d)
-                }
-            });
-        }
-
-        if (searchBy == 'searchAll') {
-            articleList.forEach(function(d) {
-                if (reg.test(d.title) || reg.test(d.content) || reg.test(d.id) || reg.test(d.date)) {
-                    temp.push(d)
-                }
-            });
-        }
-        //先推入temp最後統一更新
-        renderPost(temp)
-            // console.log(temp)
+      });
     }
 
-    $(document).on('click', '.search-dropdown-item', function() {
-        determinePlaceholder(this.getAttribute('id'))
-    });
+    if (searchBy == "searchByContent") {
+      articleList.forEach(function (d) {
+        if (reg.test(d.content)) {
+          temp.push(d);
+        }
+      });
+    }
 
-    $('#search-button').on('click', function() {
-        findPost($('#search-input').val(), articles)
-    });
+    if (searchBy == "searchByDate") {
+      articleList.forEach(function (d) {
+        if (d.date == keyWord) {
+          temp.push(d);
+        }
+      });
+    }
+    if (searchBy == "searchByAuthor") {
+      articleList.forEach(function (d) {
+        if (d.author == keyWord) {
+          temp.push(d);
+        }
+      });
+    }
 
-    renderSearch(searchCondition);
+    if (searchBy == "searchAll") {
+      articleList.forEach(function (d) {
+        if (
+          reg.test(d.title) ||
+          reg.test(d.content) ||
+          reg.test(d.id) ||
+          reg.test(d.date)
+        ) {
+          temp.push(d);
+        }
+      });
+    }
+    //先推入temp最後統一更新
+    renderPost(temp);
+    // console.log(temp)
+  }
 
-    setTimeout(() => {
-        renderPost(articles);
-    }, 300);
+  $(document).on("click", ".search-dropdown-item", function () {
+    determinePlaceholder(this.getAttribute("id"));
+  });
+
+  $("#search-button").on("click", function () {
+    findPost($("#search-input").val(), articles);
+  });
+
+  renderSearch(searchCondition);
+
+  setTimeout(() => {
+    renderPost(articles);
+  }, 300);
 });
