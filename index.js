@@ -11,17 +11,22 @@ $(document).ready(function () {
   ];
   var searchBy = "searchAll";
 
-  url =
+  data_url =
     "https://raw.githubusercontent.com/ryantsui1109/flashing_life-res/master/data.json?_=";
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", url + new Date().getTime(), false);
+  xhr.open("GET", data_url + new Date().getTime(), false);
   // xhr.setRequestHeader('Cache-Control', 'no-cache');
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {
       articles = JSON.parse(xhr.responseText);
+      console.log(typeof articles)
     }
   };
   xhr.send();
+
+  function loadArticles(){
+
+  }
 
   function determinePlaceholder(elementID) {
     if (elementID == "searchByDate") {
@@ -35,13 +40,13 @@ $(document).ready(function () {
     $("#container").empty();
     for (x of articleList) {
       if (!x.hidden) {
-        console.log(x.summary);
+        // console.log(x.summary);
         let showContent = "";
         for (y of x.summary) {
           showContent += x.content[y];
           showContent += " ";
         }
-        console.log(showContent);
+        // console.log(showContent);
         $("#container").prepend(`
                     </br>
                     <div id="${x.id}" class="shadow-sm border-0 card post" onclick="window.open('./article/article.html?articleID=${x.id}')">
