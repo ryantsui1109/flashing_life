@@ -1,6 +1,7 @@
 $(document).ready(function () {
-  var articles = [];
-  var searchCondition = [
+  let articles = [];
+
+  const searchCondition = [
     ["searchAll", "全域搜尋"],
     ["searchByID", "依照ID"],
     ["searchByTitle", "依照標題"],
@@ -9,24 +10,28 @@ $(document).ready(function () {
     ["searchByAuthor", "依照作者"],
     ["searchByTag", "依照標籤"],
   ];
-  var searchBy = "searchAll";
+  let searchBy = "searchAll";
 
-  data_url =
+  const data_url =
     "https://raw.githubusercontent.com/ryantsui1109/flashing_life-res/master/data.json?_=";
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", data_url + new Date().getTime(), false);
-  // xhr.setRequestHeader('Cache-Control', 'no-cache');
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-      articles = JSON.parse(xhr.responseText);
-      console.log(typeof articles)
-    }
+    
+  const xhrGet = async function (url, value) {
+    await fetch(url)
+      .then((res) => {
+        return res.json();
+      })
+      .then((result) => {
+        for (let x of result) {
+          value.push(x);
+        }
+      });
+    await console.log(value);
   };
-  xhr.send();
 
-  function loadArticles(){
-
-  }
+  (async function () {
+    await xhrGet(data_url, articles);
+    await renderPost(articles);
+  })();
 
   function determinePlaceholder(elementID) {
     if (elementID == "searchByDate") {
@@ -146,8 +151,5 @@ $(document).ready(function () {
   });
 
   renderSearch(searchCondition);
-
-  setTimeout(() => {
-    renderPost(articles);
-  }, 300);
+  // loadArticles();
 });
