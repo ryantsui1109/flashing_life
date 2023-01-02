@@ -1,6 +1,4 @@
 $(document).ready(function () {
-  let articles = [];
-
   const searchCondition = [
     ["searchAll", "全域搜尋"],
     ["searchByID", "依照ID"],
@@ -12,26 +10,34 @@ $(document).ready(function () {
   ];
   let searchBy = "searchAll";
 
-  const data_url =
-    "https://raw.githubusercontent.com/ryantsui1109/flashing_life-res/master/data.json?_=";
-    
-  const xhrGet = async function (url, value) {
-    await fetch(url)
+  async function xhrGet(url, value) {
+    await fetch(url + "?_=" + new Date().getTime())
       .then((res) => {
         return res.json();
       })
       .then((result) => {
-        for (let x of result) {
-          value.push(x);
+        for (let x in result) {
+          value.push(result[x]);
         }
       });
-    await console.log(value);
-  };
+  }
 
-  (async function () {
+  async function loadArticles() {
+    let index = [];
+    let articles = [];
+    const data_url =
+      "https://raw.githubusercontent.com/ryantsui1109/flashing_life-res/master/data.json";
+    const index_url =
+      "https://raw.githubusercontent.com/ryantsui1109/flashing_life-res/master/articles/index.json";
+    const article_url =
+      "https://raw.githubusercontent.com/ryantsui1109/flashing_life-res/master/articles/";
     await xhrGet(data_url, articles);
-    await renderPost(articles);
-  })();
+    await xhrGet(index_url, index);
+    for (let i of index) {
+      await xhrGet(`${article_url}${i}.json`, articles);
+    }
+    renderPost(articles);
+  }
 
   function determinePlaceholder(elementID) {
     if (elementID == "searchByDate") {
@@ -151,5 +157,5 @@ $(document).ready(function () {
   });
 
   renderSearch(searchCondition);
-  // loadArticles();
+  loadArticles();
 });
